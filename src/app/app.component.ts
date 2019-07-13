@@ -1,10 +1,17 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
-  selector: 'my-app',
-  templateUrl: './app.component.html',
-  styleUrls: [ './app.component.css' ]
+  selector: 'app-root',
+  template: `
+    <ul>
+      <li *ngFor="let item of collection | paginate: { itemsPerPage: 10, currentPage: p }"> item</li>
+    </ul>
+
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  `
 })
-export class AppComponent  {
-  name = 'Angular';
+
+export class AppComponent {
+  p = 1;
+  collection: any[] = ['test', 'test', 'test', 'test', 'test', 'test', 'test', 'test', 'test', 'test', 'test', 'test'];
 }
